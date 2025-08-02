@@ -10,20 +10,22 @@ import { User } from './users.model';
 export type EventStatus = 'pending' | 'executed';
 
 @Entity('events')
-@Index('idx_events_user_id', ['user'])
-@Index('idx_events_execute_at', ['executeAt'])
 export class Event {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => User, user => user.events, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.events, {
+    nullable: false,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   user: User;
 
   @Column({ type: 'text', nullable: false })
-  eventName: string;
+  event_name: string;
 
   @Column({ type: 'timestamptz', nullable: false })
-  executeAt: Date;
+  execute_at: Date;
 
   @Column({
     type: 'text',

@@ -6,9 +6,10 @@ import { EventsModule } from './events/events.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './models/users.model';
 import { Event } from './models/events.model';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [
+  imports: [ScheduleModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
