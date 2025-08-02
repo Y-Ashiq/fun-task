@@ -13,11 +13,26 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
+  /**
+   * Adds a new user to the database.
+   *
+   * @param body - The user data to create. Should match the User entity shape.
+   * @returns A promise that resolves to the saved User entity.
+   */
   addUser(body) {
     return this.usersRepository.save(body);
   }
 
-  async getEvents(id: string) {
+  /**
+   * Retrieves all events created by a specific user.
+   *
+   * @param id - The UUID of the user whose events are to be fetched.
+   * @throws NotFoundException if the user does not exist.
+   * @throws NotFoundException if the user has no events.
+   * @returns An array of event objects with selected fields and ISO string dates.
+   */
+
+  async getEvents(id) {
     const user = await this.usersRepository.findOne({ where: { id } });
     if (!user) {
       throw new NotFoundException('User Not Found');
