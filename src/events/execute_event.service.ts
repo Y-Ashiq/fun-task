@@ -6,7 +6,7 @@ import { EventsService } from './events.service';
 export class ExecuteEventService {
   constructor(private readonly eventsService: EventsService) {}
 
-  @Cron('* * * * * *')
+  @Cron('*/30 * * * * *')
   async handleCron() {
     await this.eventsService.executeEvents();
   }

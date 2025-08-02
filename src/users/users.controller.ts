@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { addUserDTO } from './dto/user.dto';
 
@@ -6,17 +6,13 @@ import { addUserDTO } from './dto/user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-
-  @Post("addUser")
-  addUser(@Body()  body: addUserDTO ) {
-
-    return this.usersService.addUser(body)
+  @Post('addUser')
+  addUser(@Body() body: addUserDTO) {
+    return this.usersService.addUser(body);
   }
 
-  @Get("getUserEvents")
-  getEvents(){
-
-
-
+  @Get(':id/events')
+  getEvents(@Param('id',ParseUUIDPipe) id: string) {
+    return this.usersService.getEvents(id);
   }
 }
