@@ -106,6 +106,3 @@ npm npm run test:e2e user.controller.e2e-spec.ts
 - **Validation & Error Handling**: DTOs and pipes ensure data integrity and provide clear error messages.
 - **Secure Database Access**: TypeORM prevents SQL injection and simplifies queries.
 
-## License
-
-MIT
